@@ -5,7 +5,17 @@ from bs4 import BeautifulSoup
 from src.utils import current_time
 
 def get_quotes_data(num_of_page):
+    """
+    Function yang digunakan untuk melakukan proses data scraping pada quotes data
 
+    Parameters
+    ----------
+    num_of_page (int): Jumlah page yang dibutuhkan untuk melakukan scraping data
+
+    Returns
+    -------
+    full_data (list): Data yang dalam bentuk list of json atau list of dictionary
+    """
     # list to store all extracted data
     full_data = []
 
@@ -46,6 +56,15 @@ def get_quotes_data(num_of_page):
     return full_data
     
 def save_output(data, filename):
+    """
+    Function yang digunakan untuk mengubah list of dictionary menjadi DataFrame dan
+    menyimpan outputnya dalam bentuk csv
+
+    Parameters
+    ----------
+    data (list): List of dictionary berisi data yang sudah discrape pada proses sebelumnya
+    filename (str): Filename yang digunakan untuk menyimpan data scrape 
+    """
     data = pd.DataFrame(data)
 
     data.to_csv(filename, index = False)
